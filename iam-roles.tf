@@ -20,15 +20,15 @@ resource aws_iam_role_policy "event" {
 
 resource aws_iam_role "ssm_automation" {
   count              = var.enable ? 1 : 0
-  name       = substr("rds-scheduler-ssm-${var.identifier}-${random_string.iam_suffix.result}", 0, 64)
+  name               = substr("rds-scheduler-ssm-${var.identifier}-${random_string.iam_suffix.result}", 0, 64)
   assume_role_policy = data.aws_iam_policy_document.ssm_automation_assume[0].json
 }
 
 resource aws_iam_role_policy "ssm_automation" {
-  count       = var.enable ? 1 : 0
-  name = substr("rds-scheduler-ssm-${var.identifier}-${random_string.iam_suffix.result}", 0, 64)
-  policy      = data.aws_iam_policy_document.ssm_automation[0].json
-  role        = aws_iam_role.ssm_automation[0].name
+  count  = var.enable ? 1 : 0
+  name   = substr("rds-scheduler-ssm-${var.identifier}-${random_string.iam_suffix.result}", 0, 64)
+  policy = data.aws_iam_policy_document.ssm_automation[0].json
+  role   = aws_iam_role.ssm_automation[0].name
 }
 
 resource aws_iam_role_policy_attachment "ssm_automation" {

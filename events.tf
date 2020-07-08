@@ -45,5 +45,5 @@ resource aws_cloudwatch_event_target "rds_start" {
   )
   role_arn  = aws_iam_role.event[0].arn
   target_id = "rds-scheduler-${var.identifier}-start"
-  rule = aws_cloudwatch_event_rule.rds_start[0].id
+  rule      = aws_cloudwatch_event_rule.rds_start[0].id
 }
